@@ -1,18 +1,18 @@
 section .data
-	hello db "hello world !", 10
-	size_hello equ $ - hello
+	hello db "hello world !", 10         ; set the message to print
+	size_hello equ $ - hello             ; calculate the size of the message
 	
 section .text
 	global _start
-	_start:
-		mov rax, 1
-		mov rdi, 1
-		mov rsi, hello
+	_start:                              ; start the program
+		mov rax, 1                   ; call register sys_write
+		mov rdi, 1                   ; file descriptor
+		mov rsi, hello               ; send file to sys_write
 		mov rdx, size_hello          ; the size of the message
-		syscall
+		syscall                      ; execute the config
 		
 
-		mov rax, 60
-		mov rdi, 0
-		syscall
+		mov rax, 60                  ; call register sys_exit
+		mov rdi, 0                   ; code error 0
+		syscall                      ; execute the config
  
